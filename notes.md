@@ -19,25 +19,21 @@
  - prisma better auth nextjs:
      - https://www.prisma.io/docs/guides/betterauth-nextjs
  - follow the docs
-
-```
-
-
-import { betterAuth } from 'better-auth'
-import { prismaAdapter } from 'better-auth/adapters/prisma'
-import { prisma } from './prisma'
-
-export const auth = betterAuth({
-  database: prismaAdapter(prisma, {
-    provider: 'postgresql',
-  }),
-  emailAndPassword: {
-    enabled: true,
-  }
-})
+ - update the models
+ - npm exec prisma migrate dev
+ - npm exec prisma generate
+ - back to the prisma better auth nxtjs docs
 
 
+<--- Update Git--->
+git checkout -b feat/auth-init
+git add .
+git commit -m "feat(auth): bootstrap Better Auth + Prisma init migration"
+git push -u origin feat/auth-init
 
-
-```
-
+### EMAIL USERNAME SETUP ###
+ - route group
+ - auth
+ - setup the layout page and signupform component
+ - style the signup form and page
+ 
