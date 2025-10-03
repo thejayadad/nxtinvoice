@@ -1,12 +1,8 @@
-// app/(public)/sign-in/page.tsx
-
 import { AuthForm } from "@/_components/auth/auth-form";
 import { CardWrapper } from "@/_components/auth/card-wrapper";
 import { HeaderText } from "@/_components/auth/header-text";
 import { SocialRow } from "@/_components/auth/social-row";
 
-
-export const metadata = { title: "Sign in" };
 
 export default function SignInPage() {
   return (
