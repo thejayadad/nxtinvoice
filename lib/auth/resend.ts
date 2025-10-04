@@ -13,7 +13,7 @@ export async function sendMagicLinkEmail({ to, url }: { to: string; url: string 
     throw new Error("Email sender not configured.");
   }
 
-  const html = /* same HTML as before */ `
+  const html = `
     <div style="font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;line-height:1.6">
       <h2 style="margin:0 0 8px">Sign in to NxtInvoice</h2>
       <p>Click the button below to finish signing in. This link expires soon.</p>
@@ -26,16 +26,27 @@ export async function sendMagicLinkEmail({ to, url }: { to: string; url: string 
       <p style="font-size:12px;color:#6b7280">
         If you didn’t request this, you can safely ignore this email.
       </p>
-    </div>`;
+    </div>
+  `;
 
-  const result = await resend.emails.send({ from, to, subject: "Your sign-in link", html });
+  try {
+    // ✅ Destructure to avoid the "never" issue
+    const { data, error } = await resend.emails.send({
+      from,
+      to,
+      subject: "Your sign-in link",
+      html,
+    });
 
-  if (result.error) {
-    console.error("Resend send error:", JSON.stringify(result.error, null, 2));
-    const msg =
-      typeof result.error === "string"
-        ? result.error
-        : (result.error as any)?.message || "Failed to send email";
-    throw new Error(msg);
+    if (error) {
+      console.error("Resend send error:", JSON.stringify(error, null, 2));
+      throw new Error(error.message ?? "Failed to send email");
+    }
+
+    return data?.id ?? null;
+  } catch (e: any) {
+    // Network/SDK exceptions land here
+    console.error("Resend send threw:", e);
+    throw new Error(e?.message ?? "Failed to send email");
   }
 }
