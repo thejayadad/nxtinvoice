@@ -8,14 +8,13 @@ export function SocialRow() {
   const onGoogle = async () => {
     const { error } = await authClient.signIn.social({ provider: "google" });
     if (error) toast.error(error.message ?? "Google sign-in failed");
-    // Better Auth handles redirects as needed
   };
 
   return (
     <button
       type="button"
       onClick={onGoogle}
-      className="flex w-full items-center justify-center gap-2 rounded-md border bg-white px-4 py-2 hover:bg-neutral-50"
+      className="flex w-full items-center justify-center gap-2 rounded-md border border-neutral-200 bg-white px-4 py-2 hover:bg-neutral-50"
     >
       <FcGoogle className="text-xl" />
       <span>Continue with Google</span>

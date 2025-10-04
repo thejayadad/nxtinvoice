@@ -36,4 +36,12 @@ git push -u origin feat/auth-init
  - auth
  - setup the layout page and signupform component
  - style the signup form and page
- 
+ - follow the steps to get it setup
+
+
+### MAGIC LINK ###
+- npm i resend
+- go to resend grab the api key
+- resend.ts
+
+

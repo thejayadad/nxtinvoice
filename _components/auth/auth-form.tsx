@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
 import { ForgotPasswordLink, VerifyEmailHint } from "./aux-links";
 import { LoginButton } from "./login-btn";
+import { MagicLinkForm } from "./magic-link-form";
 
 type Mode = "signin" | "signup";
 
@@ -89,7 +90,7 @@ export function AuthForm({ mode, redirectTo = "/dashboard" }: Props) {
         />
         {mode === "signup" ? (
           <div className="mt-1">
-            <VerifyEmailHint />
+            <MagicLinkForm />
           </div>
         ) : (
           <div className="mt-1">
